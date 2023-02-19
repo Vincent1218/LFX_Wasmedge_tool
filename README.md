@@ -1,6 +1,7 @@
 # LFX Mentorship 2023 Challenge
 
 ### Applicant: Chai Wen Xuan
+### Language: C++
 
 This is my solution to the pretest challenge for LFX mentorship for #2226 and #2241.
 It is a standalone tool that uses WasmEdge C SDK to execute a given Wasm application.
@@ -69,7 +70,7 @@ $ ./x
 2. Version
 
 - If version is given, we will ignore the arguments passed after it.
-- In this example, we can see that the argument number is also calculated when parsing.
+- In this example, we can see that the number of arguments passed is printed when parsing.
 
 ```
 # only "version"
