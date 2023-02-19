@@ -33,7 +33,6 @@ tool [version] [run] [wasm path] [arguments]
 
 - supports wasm file with multiple functions, for example, add(),factorial(),fibonacci() in one wasm file
 
-4.
 
 <br/><br/>
 
@@ -42,7 +41,7 @@ tool [version] [run] [wasm path] [arguments]
 1. Clone this repo
 
 ```
-$ git clone
+$ git clone https://github.com/Vincent1218/LFX_Wasmedge_tool.git
 ```
 
 2. Install WasmEdge [Click Me](https://wasmedge.org/book/en/quick_start/install.html)
