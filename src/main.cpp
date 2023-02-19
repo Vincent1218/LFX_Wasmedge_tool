@@ -18,60 +18,64 @@ int parseArgs( int argc, char *argv[], string &wasmPath, bool &versionFlag, vect
     // tool [version] [run] [wasm path] [arguments]
 
     if (argc < 2) {
-        printUsage();
-        return 1;
+      printUsage();
+      return 1;
     }
 
     for (int i = 1; i < argc; ++i) {
         string arg = argv[i];
         if (arg == "version") {
-            versionFlag = true;
+          versionFlag = true;
+          break;
         } else if (arg == "run") {
-            continue;
+          continue;
         } else if (arg.find(".wasm") != string::npos) {
             wasmPath = arg;
-        } else {
-            args.push_back(arg);
+        } else if(wasmPath != ""){
+          args.push_back(arg);
+        }
+        else {
+          printUsage();
+          return 1;
         }
     }
-
+    
     // If version flag is set, ignore other flags
     // If version flag is not set, check if wasm path is given
     if (!versionFlag && wasmPath.empty()) {
-        printUsage();
-        return 1;
+      printUsage();
+      return 1;
     }
     else {
-        return 0;
+      return 0;
     }
 }
 
 
 int main(int argc, char *argv[]) {
-    string wasmPath;
-    bool versionFlag = false;
-    vector<string> args;
+  string wasmPath;
+  bool versionFlag = false;
+  vector<string> args;
 
 
-    // Parse arguments
-    cout << "Parsing arguments" << endl;
-    cout << "Argument number: " << argc << endl << endl;
-    if (parseArgs(argc, argv, wasmPath, versionFlag, args) != 0) {
-        return 1;
-    }
+  // Parse arguments
+  cout << "Parsing arguments" << endl;
+  cout << "Argument number: " << argc << endl << endl;
+  if (parseArgs(argc, argv, wasmPath, versionFlag, args) != 0) {
+    return 1;
+  }
 
-    // If version flag is set, ignore other flags
-    if (versionFlag) {
-        printVersion();
-        return 0;
-    }
-
-    // Run VM
-    if (vmMain(wasmPath, args) != 0) {
-        return 1;
-    }
-
-    
+  // If version flag is set, ignore other flags
+  if (versionFlag) {
+    printVersion();
     return 0;
+  }
+
+  // Run VM
+  if (vmMain(wasmPath, args) != 0) {
+      return 1;
+  }
+  
+  return 0;
 
 }
